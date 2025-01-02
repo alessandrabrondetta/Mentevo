@@ -5,6 +5,13 @@ What we need to reproduce:
 - Experiment 1: lower mu help
 - ...
 
+# todo
+
+- implement the full equations
+- implement the solver
+- reproduce the curve evolutions
+- ...
+- multi-threading
 
 # Getting started
 
