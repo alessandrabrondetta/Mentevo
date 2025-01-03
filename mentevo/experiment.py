@@ -1,6 +1,7 @@
 import numpy as np
+from scipy.integrate import solve_ivp
 
-from .utils import gaussian_g_vector
+from .utils import gaussian_g_vector, build_forward_matrix, build_cue_vector
 
 
 class Experiment():
@@ -13,8 +14,16 @@ class Experiment():
         Number of agents in the system.
     number_of_tasks : int
         Number of tasks the agents have to perform.
-
     TODO: Ale finish this :)
+    communication_graph : 2D array, optional
+        The communication graph between agents. 1 means that the agents can communicate
+        and 0 means that they cannot. Usually, the diagonal is 1 (intra-communication).
+        If None, then the default is a fully connected graph.
+    task_graph : 2D array, optional
+        The task graph between tasks. 1 means that the tasks are positively correlated
+        and -1 means that the tasks are negatively correlated. Usually, the diagonal is 1
+        and the rest is -1. If None, then the default is diagonal 1 and non diagonal -1.
+
     """
 
     def __init__(self,
@@ -33,22 +42,20 @@ class Experiment():
                  initial_state=None,
                  total_time=1_000,
                  rate=0.1,
-                 percentage_informed=100.0,
+                 nb_informed=None,
                  ):
         # perform some sanity checks
         assert number_of_agents > 0
         assert number_of_tasks > 0
-        assert 0.0 < percentage_informed <= 100.0
         assert 0.0 <= rate <= 1.0
+        # todo: finish assertions
 
         self.number_of_agents = number_of_agents
         self.number_of_tasks = number_of_tasks
 
         if communication_graph is None:
             # default communication graph is every agent communicate to each other
-            # except themselves : matrix of 1 and remove the diagonal
             communication_graph = np.ones((number_of_agents, number_of_agents))
-            communication_graph.fill_diagonal(0)
 
         if task_graph is None:
             # default task graph is every task is negatively correlated with each other
@@ -71,9 +78,39 @@ class Experiment():
 
         if initial_state is None:
             # default is zero for all agents on all tasks
-            self.initial_state = np.zeros((number_of_agents, number_of_tasks))
+            self.initial_state = np.zeros((number_of_agents * number_of_tasks))
 
         self.total_time = total_time
         self.rate = rate
 
-        self.percentage_informed = percentage_informed
+        if nb_informed is None:
+            self.nb_informed = number_of_agents
+
+        self.F = build_forward_matrix(number_of_agents, number_of_tasks,
+                                      alpha, beta, gamma, delta,
+                                      task_graph, communication_graph)
+
+        self.cue_vector = build_cue_vector(number_of_agents, number_of_tasks,
+                                           self.nb_informed, total_time)
+
+    def solve(self):
+        """
+        Solve the experiment.
+        todo: Ale: do the documentation.
+        """
+        g = self.g.repeat(self.number_of_tasks)
+
+        def diff(t, z):
+            cue = self.cue_vector[round(t)]
+            f = self.F @ z
+            f = f / self.number_of_agents
+            f = - self.d * z + np.tanh(g * f + cue)
+            f = f * (1.0 / self.tau)
+            return f
+
+        # solve using scipy
+        zs = solve_ivp(diff, [0, self.total_time], self.initial_state,
+                       dense_output=False, max_step=1_000, method='Radau',
+                       t_eval=np.arange(0, self.total_time, 1))
+
+        return zs

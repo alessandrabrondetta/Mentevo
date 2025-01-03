@@ -10,8 +10,13 @@ What we need to reproduce:
 - implement the full equations
 - implement the solver
 - reproduce the curve evolutions
+- implement the plot functions
+- implement the performance
+- test the lower mu
+- test the heterogeneous
 - ...
-- multi-threading
+- multi-threadind
+- plot as gifs
 
 # Getting started
 

@@ -26,7 +26,7 @@ def build_communication_tensor(number_of_agents, number_of_tasks,
     return A
 
 
-def build_forward_matrix(Na, No, alpha, beta, gamma, delta, task_graph, communication_graph):
+def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, delta, task_graph, communication_graph):
     """
     todo Ale: do the documentation.
 
@@ -51,13 +51,52 @@ def build_forward_matrix(Na, No, alpha, beta, gamma, delta, task_graph, communic
     """
     # todo: check the shapes of graphs!!
     # diagonal blocks of the forward matrix
-    diagonal_block = alpha * (task_graph * np.eye(No)) + beta * (task_graph - task_graph * np.eye(No))
+    diagonal_block = alpha * (task_graph * np.eye(number_of_tasks)
+                              ) + beta * (task_graph - task_graph * np.eye(number_of_tasks))
 
     # off-diagonal blocks of the forward matrix
-    off_diagonal_block = gamma * (task_graph * np.eye(No)) + delta * (task_graph - task_graph * np.eye(No))
+    off_diagonal_block = gamma * (task_graph * np.eye(number_of_tasks)
+                                  ) + delta * (task_graph - task_graph * np.eye(number_of_tasks))
 
     # construct the full Na x Na block matrix using Kronecker products
-    A = np.kron(communication_graph * np.eye(Na), diagonal_block) \
-        + np.kron((communication_graph - communication_graph * np.eye(Na)), off_diagonal_block)
+    F = np.kron(communication_graph * np.eye(number_of_agent), diagonal_block) \
+        + np.kron((communication_graph - communication_graph * np.eye(number_of_agent)), off_diagonal_block)
 
-    return A
+    return F
+
+
+def build_cue_vector(number_of_agents, number_of_tasks, n_informed,
+                     n_switches, total_time, reversed=False):
+    """
+    todo the documentation
+    """
+    n_switches = int(n_switches)  # todo: ale see if we should assert here
+    n_informed = int(n_informed)  # todo: ale see if we should assert here
+    switch_len = total_time // n_switches
+
+    cue_vector = np.zeros((total_time, number_of_agents * number_of_tasks))
+
+    # first value is 1 for the first task and -1 for all the other tasks
+    val = -1.0 * np.ones(number_of_tasks)
+    val[0] = 1.0
+    val = np.array(list(val) * number_of_agents)
+    # val = np.ones((number_of_agents * number_of_tasks))
+    # for i in range(number_of_tasks):
+    #    val[i * number_of_tasks + 1: (i + 1) * number_of_tasks] = -1
+    # if number informed is less than number of agents, we need to set the
+    # remaining agents to 0
+    if n_informed < number_of_agents:
+        val[n_informed * number_of_tasks:] = 0
+
+    for i in range(int(n_switches)):
+        cue_vector[i*switch_len:(i+1)*switch_len, :] = val
+        # val = np.roll(val, 1)
+        # val = np.roll(val, number_of_tasks)
+        val = val.reshape((number_of_agents, number_of_tasks))
+        val = np.roll(val, 1, axis=1)
+        val = val.flatten()
+
+    if reversed:
+        cue_vector = -1.0 * cue_vector
+
+    return cue_vector
