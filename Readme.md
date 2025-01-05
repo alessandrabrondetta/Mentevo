@@ -14,9 +14,13 @@ What we need to reproduce:
 - implement the performance
 - test the lower mu
 - test the heterogeneous
+- start cue vector from zero (left padding)
+- implement more tests
+- do the documentation
 - ...
 - multi-threadind
 - plot as gifs
+- differentiable solver (pytorch or jax)
 
 # Getting started
 
