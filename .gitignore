@@ -62,7 +62,7 @@ venv.bak/
 
 # notebooks and lab
 lab/
-notebooks/
+#notebooks/
 
 # ide
 .idea

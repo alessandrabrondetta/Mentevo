@@ -2,7 +2,7 @@ import numpy as np
 from math import floor
 from scipy.integrate import solve_ivp
 
-from mentevo.utils import gaussian_g_vector, build_forward_matrix, build_cue_vector
+from .utils import gaussian_g_vector, build_forward_matrix, build_cue_vector
 
 
 class Experiment():
@@ -126,4 +126,4 @@ class Experiment():
                        dense_output=False, max_step=1_000, method='Radau',
                        t_eval=np.arange(0, self.total_time, 1))
 
-        return zs
+        return np.array(zs.y)
