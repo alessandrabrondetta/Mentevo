@@ -2,6 +2,27 @@ import numpy as np
 
 
 def gaussian_g_vector(average, deviation, number_of_agents):
+    """
+    Create a vector of g values following Gaussian distribution.
+
+    Parameters
+    ----------
+    average : float
+        The average value of the Gaussian distribution.
+        The average should be greater than 0.
+    deviation : float
+        The standard deviation of the Gaussian distribution.
+    number_of_agents : int
+        The number of agents in the system.
+    
+    Returns
+    -------
+    g : numpy array
+        A numpy array of size number_of_agents with the g values.           
+    """
+    assert average > 0, 'average should be greater than 0'
+    assert deviation > 0, 'deviation should be greater than 0'
+
     g = np.random.normal(average, deviation, number_of_agents)
     g = np.clip(g, 0, None)
     g = g / (np.mean(g) + 1e-6)
