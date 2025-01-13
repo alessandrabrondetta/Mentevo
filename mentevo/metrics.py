@@ -1,6 +1,6 @@
 import numpy as np
 
-def compute_performance(experiment, curves):
+def compute_performance(experiment, curves, detailed=False):
     """
     todo: add docstring
     """
@@ -17,7 +17,11 @@ def compute_performance(experiment, curves):
     assert curves.shape == (2 * experiment.number_of_agents, experiment.total_time)
 
     # compute the score using labels and curves
-    score = np.sum(labels * curves.T, 0)
+    detailed_score = labels * curves.T
+    score = np.sum(detailed_score, 0)
     score = score.reshape(na, 2).sum(1)
+
+    if detailed:
+        return score, detailed_score
 
     return score

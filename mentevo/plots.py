@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 
 
 def plot_curves(experiment, curves):
+    """
+    todo: docstring
+    """
     assert isinstance(curves, np.ndarray)
 
     na = experiment.number_of_agents

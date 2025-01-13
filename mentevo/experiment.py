@@ -26,6 +26,7 @@ class Experiment():
         and the rest is -1. If None, then the default is diagonal 1 and non diagonal -1.
 
     """
+    #to do: assert g = na
 
     def __init__(self,
                  number_of_agents=4,
