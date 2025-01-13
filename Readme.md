@@ -1,41 +1,51 @@
-# Mentevo
 
-What we need to reproduce:
+<div align="center">
+    <img src="assets/banner.png" width="75%" alt="Mentevo logo" align="center" />
+</div>
 
-- Experiment 1: lower mu help
-- ...
+👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
 
-# todo
+This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.
 
-- implement the full equations
-- implement the solver
-- reproduce the curve evolutions
-- implement the plot functions
-- implement the performance
-- test the lower mu
-- test the heterogeneous
-- start cue vector from zero (left padding)
-- implement more tests
-- do the documentation
-- ...
-- multi-threadind
-- plot as gifs
-- differentiable solver (pytorch or jax)
+# Getting Started
 
-# Getting started
+To start with Mentevo, we propose multiple notebook that will help you familiarize with the library
 
 
-```bash
-pip install mentevo
-```
+- Starter Notebook [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/starter.ipynb)
+- Study of optimal gain value depending on the task switching rate [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/optimal_g_homogenous.ipynb)
+- Performance in details [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/performance.ipynb)
+- Partially informed agents [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/partial_informed.ipynb)
 
-The to use it:
+
+Otherwise, you can simply start hacking with mentevo, it's as simple as:
+
 ```python
-from mentevo import XYZ
-from mentevo.plots import YYY
+from mentevo import (Experiment, compute_performance, plot_curves)
 
-users = XYZ()
-results = user.run(ZZZ)
+# create an experiment object
+experiment = Experiment(nb_agents=4)
+curves = experiment.solve()
 
-plot(results)
+plot_curves(experiment, curves)
+scores = compute_performance(experiment, curves)
+print('scores', scores)
 ```
+
+When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like the alpha, beta, d or tau significantly impact the output. We recommend ajusting the values according to the original paper to ensure comparable results.
+
+# Citation
+
+```
+@inproceedings{brondetta2024benefits,
+  title={On the Benefits of Heterogeneity in Cognitive Stability and Flexibility for Collaborative Task Switching},
+  author={Brondetta, Alessandra and Bizyaeva, Anastasia and Lucas, Maxime and Petri, Giovanni and Musslick, Sebastian},
+  booktitle={Proceedings of the Annual Meeting of the Cognitive Science Society},
+  volume={46},
+  year={2024}
+}
+```
+
+# Authors
+
+- Alessandra Brondetta - alessandra.brondetta@uni-osnabrueck.de, Candidate PhD Student, Osnabrück University
