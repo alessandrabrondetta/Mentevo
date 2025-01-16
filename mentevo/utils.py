@@ -56,9 +56,11 @@ def uniform_g_vector(average, delta, number_of_agents):
 
     assert average > 0, 'average should be greater than 0'
     assert delta >= 0, 'deviation should be non-negative'
-    assert delta <= average, 'deviation should be less than average'
+    assert delta <= average, 'deviation should be equal or less than average'
 
     g = np.random.uniform(average - delta, average + delta, number_of_agents)
+    # used range in Brondetta et al. 2024
+    g[g == 0] = np.random.uniform(0.5, 8.5, size=np.sum(g == 0))
     g = g / (np.mean(g) + 1e-6)
     g = g * average
     return g
@@ -76,7 +78,8 @@ def build_communication_tensor(number_of_agents, number_of_tasks,
 def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, delta, 
                          task_graph, communication_graph):
     """
-    Build the forward matrix of the system.
+    Build the forward matrix of the homogeneous system, where the parameter alpha, beta, 
+    gamma and delta are the same for all the agents. 
 
     The forward matrix is a matrix of size (Na * No) x (Na * No)
     that represents the interaction between all agents and tasks.
@@ -134,22 +137,22 @@ def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, d
     assert task_graph.shape == (number_of_tasks, number_of_tasks), 'task_graph should be of size No x No'
     assert communication_graph.shape == (number_of_agent, number_of_agent), 'communication_graph should be of size Na x Na' 
     
-    # diagonal blocks of the forward matrix
+    # diagonal blocks of the forward matrix (intra-agent interactions)
     diagonal_block = alpha * (task_graph * np.eye(number_of_tasks)
                               ) + beta * (task_graph - task_graph * np.eye(number_of_tasks))
 
-    # off-diagonal blocks of the forward matrix
+    # off-diagonal blocks of the forward matrix (inter-agent interactions)
     off_diagonal_block = gamma * (task_graph * np.eye(number_of_tasks)
                                   ) + delta * (task_graph - task_graph * np.eye(number_of_tasks))
 
-    # construct the full Na x Na block matrix using Kronecker products
+    # construct the full block matrix using Kronecker products
     F = np.kron(communication_graph * np.eye(number_of_agent), diagonal_block) \
         + np.kron((communication_graph - communication_graph * np.eye(number_of_agent)), off_diagonal_block)
 
     return F
 
 
-def build_cue_vector(number_of_agents, number_of_tasks, n_informed,
+def build_cue_vector_zero(number_of_agents, number_of_tasks, n_informed,
                      n_switches, total_time, reversed=False):
     """
     Build the cue vector for the experiment.
@@ -221,7 +224,7 @@ def build_cue_vector(number_of_agents, number_of_tasks, n_informed,
     return cue_vector
 
 
-def build_cue_vector_initial_time(number_of_agents, number_of_tasks, n_informed,
+def build_cue_vector(number_of_agents, number_of_tasks, n_informed,
                      n_switches, total_time, initial_steps = 0, reversed=False):
     """
     Build the cue vector for the experiment with initial_steps indicates the

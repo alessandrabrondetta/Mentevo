@@ -13,11 +13,11 @@ def _original_F(Na, No, A, z):
     A_SO = np.zeros((Na * No, Na * No))
     A_SO[inds] = A[inds]
     A_SO = A_SO
-    # assemble same-option interactions and bias (2)
+    # assemble same-option interactions 
     F1 = (np.dot(A_SO, z))
 
     F2 = np.zeros_like(F1)
-    # assemble inter-option interactions about option j (3)
+    # assemble inter-option interactions 
     for j in range(No):
         A_j = np.zeros((Na * No, Na * No))
         ind_mat = np.zeros((No, No))
@@ -32,7 +32,7 @@ def _original_F(Na, No, A, z):
     return F, F1, F2
 
 
-def test_forward_matrix_1_agent():
+def test_forward_matrix_1_agent_2_task():
     na = 1
     no = 2
     gamma = 1.0
@@ -53,7 +53,7 @@ def test_forward_matrix_1_agent():
             ]))
 
 
-def test_forward_matrix_2_agent():
+def test_forward_matrix_2_agent_2_task():
     na = 2
     no = 2
     gamma = 1.0
@@ -171,7 +171,7 @@ def test_task_graph():
     ]))
 
 
-def test_forward_matrix_3_agent():
+def test_forward_matrix_3_agent_2_task():
     na = 3
     no = 2
 
@@ -193,4 +193,85 @@ def test_forward_matrix_3_agent():
                         [-delta, gamma, -beta, alpha, -delta, gamma],
                         [gamma, -delta, gamma, -delta, alpha, -beta],
                         [-delta, gamma, -delta, gamma, -beta, alpha],
+                    ]))
+
+
+def test_forward_matrix_3_agent_2_task_2_connected():
+    na = 3
+    no = 2
+
+    task_graph = np.array([[1, -1], [-1, 1]])
+    communication_graph = np.array([[1, 1, 1], [1, 1, 0], [1, 0, 1]])
+
+    for alpha in [1.0, 10.0, 5.0]:
+        for beta in [0.1, 0.5, 0.9]:
+            for gamma in [0.1, 0.3, 1.0]:
+                for delta in [0.1, 0.3, 1.0]:
+
+                    F = build_forward_matrix(na, no, alpha, beta, gamma, delta, task_graph, communication_graph)
+
+                    assert F.shape == (na * no, na * no)
+                    assert epsilon_equal(F, np.array([
+                        [alpha, -beta, gamma, -delta, gamma, -delta],
+                        [-beta, alpha, -delta, gamma, -delta, gamma],
+                        [gamma, -delta, alpha, -beta, 0, 0],
+                        [-delta, gamma, -beta, alpha, 0, 0],
+                        [gamma, -delta, 0, 0, alpha, -beta],
+                        [-delta, gamma, 0, 0, -beta, alpha],
+                    ]))
+
+
+def test_forward_matrix_2_agent_3_task():
+    na = 2
+    no = 3
+
+    task_graph = np.array([[1, -1, 1], 
+                           [-1, 1, -1], 
+                           [1, -1, 1]])
+    communication_graph = np.array([[1, 1], 
+                                    [1, 1]])
+
+    for alpha in [1.0, 10.0, 5.0]:
+        for beta in [0.1, 0.5, 0.9]:
+            for gamma in [0.1, 0.3, 1.0]:
+                for delta in [0.1, 0.3, 1.0]:
+
+                    F = build_forward_matrix(na, no, alpha, beta, gamma, delta, task_graph, communication_graph)
+
+                    assert F.shape == (na * no, na * no)
+                    assert epsilon_equal(F, np.array([
+                        [alpha, -beta, beta, gamma, -delta, delta],
+                        [-beta, alpha, -beta, -delta, gamma, -delta],
+                        [beta, -beta, alpha, delta, -delta, gamma],
+                        [gamma, -delta, delta, alpha, -beta, beta],
+                        [-delta, gamma, -delta, -beta, alpha, -beta],
+                        [delta, -delta, gamma, beta, -beta, alpha],
+                    ]))
+
+
+def test_forward_matrix_2_agent_2_task_het():
+    na = 2
+    no = 2
+
+    t11, t12, t21, t22 = 1.0, 0.5, 0.5, 1.0  # Example values
+    a11, a12, a21, a22 = 1.0, 0.5, 0.5, 1.0  # Example values
+
+    task_graph = np.array([[t11, t12], 
+                           [t21, t22]])
+    communication_graph = np.array([[a11, a12], 
+                                    [a21, a22]])
+
+    for alpha in [1.0, 10.0, 5.0]:
+        for beta in [0.1, 0.5, 0.9]:
+            for gamma in [0.1, 0.3, 1.0]:
+                for delta in [0.1, 0.3, 1.0]:
+
+                    F = build_forward_matrix(na, no, alpha, beta, gamma, delta, task_graph, communication_graph)
+
+                    assert F.shape == (na * no, na * no)
+                    assert epsilon_equal(F, np.array([
+                        [alpha*a11*t11, beta*a11*t12, gamma*a12*t11, delta*a12*t12],
+                        [beta*a11*t21, alpha*a11*t22, delta*a12*t21, gamma*a12*t22],
+                        [gamma*a21*t11, delta*a21*t12, alpha*a22*t11, beta*a22*t12],
+                        [delta*a21*t21, gamma*a21*t22, beta*a22*t21, alpha*a22*t22],
                     ]))
