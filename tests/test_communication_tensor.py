@@ -1,6 +1,6 @@
 import numpy as np
 
-from mentevo.utils import build_communication_tensor, build_forward_matrix
+from mentevo.utils import build_forward_matrix
 from .utils import epsilon_equal
 
 
@@ -253,8 +253,8 @@ def test_forward_matrix_2_agent_2_task_het():
     na = 2
     no = 2
 
-    t11, t12, t21, t22 = 1.0, 0.5, 0.5, 1.0  # Example values
-    a11, a12, a21, a22 = 1.0, 0.5, 0.5, 1.0  # Example values
+    t11, t12, t21, t22 = 1.0, 0.5, 0.5, 1.0  # example values
+    a11, a12, a21, a22 = 1.0, 0.5, 0.5, 1.0  # example values
 
     task_graph = np.array([[t11, t12], 
                            [t21, t22]])
