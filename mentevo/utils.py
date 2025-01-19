@@ -20,7 +20,7 @@ def gaussian_g_vector(average, deviation, number_of_agents):
     Returns
     -------
     g : 1D numpy array
-        A numpy array of size number_of_agents with the g values for all agents in the system.           
+        A numpy array of size (number_of_agents,) with the g values for all agents in the system.           
     """
     assert average > 0, 'average should be greater than 0'
     assert deviation >= 0, 'deviation should be non-negative'
@@ -53,7 +53,7 @@ def uniform_g_vector(average, delta, number_of_agents):
     Returns
     -------
     g : 1D numpy array
-        A numpy array of size number_of_agents with the g values for all agents in the system.           
+        A numpy array of size (number_of_agents,) with the g values for all agents in the system.           
     """
 
     assert average > 0, 'average should be greater than 0'
@@ -73,7 +73,7 @@ def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, d
     Build the forward matrix of the homogeneous system, where the parameter alpha, beta, 
     gamma and delta are the same for all the agents.  
 
-    The forward matrix is a matrix of size (Na * No) x (Na * No), where Na is the number of agents
+    The forward matrix is a matrix of size (Na * No, Na * No), where Na is the number of agents
     and No is the number of tasks. The forward matrix represents the interaction between all agents 
     and tasks. The next state of the agents is given by the matrix-vector product
     of the forward matrix and the current state of the agents.
@@ -113,18 +113,18 @@ def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, d
         The graph between tasks. A positive value means that the tasks are positively correlated, 
         a negative value means that the tasks are negatively correlated. 
         A null value means that the tasks are not correlated.
-        The task graph should be of size No x No.
+        The task graph should be of size (No, No).
     communication_graph : 2D numpy array
         The graph between agents. A positive value means that the agents have a positive interaction, 
         a negative value means that the agents have a negative interaction. 
         A null value means that the agents can not communicate.
-        The communication graph should be of size Na x Na.
+        The communication graph should be of size (Na, Na).
 
     Returns
     -------
     F : 2D numpy array
         The forward matrix of the system representing the interactions 
-        between agents and tasks. The forward matrix is of size (Na * No) x (Na * No). 
+        between agents and tasks. The forward matrix is of size (Na * No, Na * No). 
     """
 
     assert number_of_agent > 0, 'number_of_agent should be greater than 0'
@@ -133,8 +133,8 @@ def build_forward_matrix(number_of_agent, number_of_tasks, alpha, beta, gamma, d
     assert beta >= 0, 'beta should be non-negative'
     assert gamma >= 0, 'gamma should be non-negative'
     assert delta >= 0, 'delta should be non-negative'
-    assert task_graph.shape == (number_of_tasks, number_of_tasks), 'task_graph should be of size No x No'
-    assert communication_graph.shape == (number_of_agent, number_of_agent), 'communication_graph should be of size Na x Na' 
+    assert task_graph.shape == (number_of_tasks, number_of_tasks), 'task_graph should be of size (No, No)'
+    assert communication_graph.shape == (number_of_agent, number_of_agent), 'communication_graph should be of size (Na, Na)' 
     
     # diagonal blocks of the forward matrix (intra-agent interactions)
     diagonal_block = alpha * (task_graph * np.eye(number_of_tasks)
@@ -155,7 +155,7 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
                      number_of_switches, total_time, initial_steps = 0, reversed=False):
     """
     Build the cue vector for the experiment.
-    The cue vector is a 2D vector of size total_time x (Na * No) that informs the agents about the tasks 
+    The cue vector is a 2D vector of size (total_time, Na * No) that informs the agents about the tasks 
     they should perform at each time unit. Na is the number of agents and No is the number of tasks.
     The cue vector has the following characteristics.
     - The first initial_steps time units are vectors of zero, meaning no tasks are prioritized
@@ -199,7 +199,7 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
     Returns
     -------
     cue_vector : 2D numpy array
-        The cue vector of the experiment. The cue vector is of size total_time x (Na * No).
+        The cue vector of the experiment. The cue vector is of size (total_time, Na * No).
     """
 
     assert number_of_agents > 0, 'number_of_agents should be greater than 0'

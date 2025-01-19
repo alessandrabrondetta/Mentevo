@@ -27,7 +27,7 @@ class Experiment():
         the agents can not communicate.   
         Typically, the diagonal is 1 (intra-agent-communication).
         If None, then the default is a fully connected graph where all agents can communicate.
-        The shape of the matrix is number_of_agents x number_of_agents.
+        The shape of the matrix is (number_of_agents, number_of_agents).
     task_graph : 2D numpy array, optional
         The graph between tasks. A positive value means that the tasks are positively correlated, 
         a negative value means that the tasks are negatively correlated. A null value means that 
@@ -35,7 +35,7 @@ class Experiment():
         Typically, the diagonal is 1 (same-task correlation). 
         If None, then the default is diagonal 1 (positive self correlation) and 
         off-diagonal values are -1 (negative correlations with the other tasks).
-        The shape of the matrix is number_of_tasks x number_of_tasks. 
+        The shape of the matrix is (number_of_tasks, number_of_tasks). 
     alpha : float, optional
         Parameter of the dynamical system's equations that represents the weight of the same agent-
         same task interactions. Must be greater than or equal to 0. Default is 0.03.  
@@ -57,14 +57,14 @@ class Experiment():
     g : 1D numpy array, optional
         The g vector of the dynamical system's equations, representing the gain values of the agents 
         and regulating the slope of the saturation function. 
-        The shape of the array is number_of_agents.
+        The shape of the array is (number_of_agents,).
         Default is a gaussian vector with mean 3.0 and standard deviation 1.0. 
     bias_value : float, optional
         The bias value of the dynamical system's equations that represents the weight of the cue 
         vector of the experiment. Must be greater than or equal to 0. Default is 0.1.
     initial_state : 1D numpy array, optional
         The initial state of the system, representing the task activity states at the start
-        of the experiment. The shape of the array is number_of_agents*number_of_tasks.
+        of the experiment. The shape of the array is (number_of_agents*number_of_tasks,).
         Default is an array of zero for all agents on all tasks.
     total_time : int, optional
         The total time of the simulation in time units. Must be greater than 0. Default is 2_000. 
@@ -86,20 +86,17 @@ class Experiment():
     F : 2D numpy array
         The forward matrix of the dynamical system, representing the interactions 
         between agents and tasks. The shape of the matrix 
-        is (number_of_agents*number_of_tasks) x (number_of_agents*number_of_tasks).
+        is (number_of_agents*number_of_tasks, number_of_agents*number_of_tasks).
     cue_vector : 2D numpy array
         The cue vector of the experiment, representing the external input to the system.
-        The shape of the array is total_time x (number_of_agents*number_of_tasks).
+        The shape of the array is (total_time, number_of_agents*number_of_tasks).
     task_switching_times : 1D numpy array
         The time units at which the task switches occur in the experiment. 
-        The shape of the array is number_of_task_switches. 
+        The shape of the array is (number_of_task_switches,). 
 
     """
     # vedere se aggiungere parametri e returns in solve
     # fare test generale integration test
-    # fare situazione più generale possibile(vedere se manca qualcosa da paper)
-    # check notation number/nb
-    # cancellare funzioni in piú in utils
 
 
     def __init__(self,
@@ -216,11 +213,16 @@ class Experiment():
         The system is solved for each time unit, and the task activity states of the agents
         are returned over time in the experiment.
 
+        Parameters
+        ----------
+        **kwargs : optional
+            Additional keyword arguments to pass to the solve_ivp function.
+
         Returns
         -------
         zs.y : 2D numpy array
             The task activity states of the agents over time in the experiment.
-            The shape of the array is total_time x (number_of_agents*number_of_tasks).
+            The shape of the array is (number_of_agents*number_of_tasks, total_time).
         """
         g = self.g.repeat(self.number_of_tasks)
         assert g.shape == (self.number_of_agents * self.number_of_tasks,)

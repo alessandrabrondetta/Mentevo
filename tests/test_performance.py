@@ -20,8 +20,10 @@ def test_performance_score():
                  bias_value=1.0,
                  initial_state=None,
                  total_time=5,
-                 nb_switches=1,
-                 nb_informed=None)
+                 initial_steps=0,
+                 reverse=False,
+                 number_of_switches=1,
+                 number_of_informed=None)
     # test with 1 task
     curves = np.array([
         [1.0, 1.0, 1.0, 1.0, 1.0],
@@ -30,7 +32,7 @@ def test_performance_score():
         [0.0, 0.0, 0.0, 0.0, 0.0],
     ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([5, 5]))
+    assert epsilon_equal(res[0], np.array([5, 5]))
 
     # test with negative values
     curves = np.array([
@@ -40,7 +42,7 @@ def test_performance_score():
             [-1.0, -1.0, -1.0, -1.0, -1.0],
         ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([10, 10]))
+    assert epsilon_equal(res[0], np.array([10, 10]))
 
     # test with all ones
     curves = np.array([
@@ -50,7 +52,7 @@ def test_performance_score():
             [1.0, 1.0, 1.0, 1.0, 1.0],
         ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([0, 0]))
+    assert epsilon_equal(res[0], np.array([0, 0]))
 
     # test when the agent got all wrong
     curves = np.array([
@@ -62,7 +64,7 @@ def test_performance_score():
             [1.0, 1.0, 1.0, 1.0, 1.0],
         ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([-10, -10]))
+    assert epsilon_equal(res[0], np.array([-10, -10]))
 
 
 def test_performance_1_switch():
@@ -80,8 +82,8 @@ def test_performance_1_switch():
                  bias_value=0.1,
                  initial_state=None,
                  total_time=6,
-                 nb_switches=2,
-                 nb_informed=None)
+                 number_of_switches=2,
+                 number_of_informed=None)
     # test with 1 task
     curves = np.array([
         [1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
@@ -90,7 +92,7 @@ def test_performance_1_switch():
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
     ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([0, 0]))
+    assert epsilon_equal(res[0], np.array([0, 0]))
 
     # test with only 1 task active correctly
     curves = np.array([
@@ -102,7 +104,7 @@ def test_performance_1_switch():
             [0.0, 0.0, 0.0, 1.0, 1.0, 1.0],
         ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([6, 6]))
+    assert epsilon_equal(res[0], np.array([6, 6]))
 
     # test with only 2 task active correctly
     curves = np.array([
@@ -114,7 +116,7 @@ def test_performance_1_switch():
             [-1.0, -1.0, -1.0, 1.0, 1.0, 1.0],
         ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([12, 12]))
+    assert epsilon_equal(res[0], np.array([12, 12]))
 
     # test with 1 task
     curves = np.array([
@@ -124,7 +126,7 @@ def test_performance_1_switch():
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
     ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([0, 0]))
+    assert epsilon_equal(res[0], np.array([0, 0]))
 
     # test when the agent got all wrong
     curves = np.array([
@@ -136,4 +138,4 @@ def test_performance_1_switch():
             [5.0, 0.1, 3.0, -2.0, -1.0, -1.0],
     ])
     res = compute_performance(experiment, curves)
-    assert epsilon_equal(res, np.array([-19, -24.2]))
+    assert epsilon_equal(res[0], np.array([-19, -24.2]))
