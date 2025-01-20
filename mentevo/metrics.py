@@ -21,7 +21,7 @@ def compute_performance(experiment, simulation_results, detailed=False):
 
     Returns
     -------
-    score : 1D numpy array
+    individual_performance : 1D numpy array
         The performance of each agent. The shape is (number_of_agents,).
     group_performance : float
         The performance of the group.
@@ -45,13 +45,13 @@ def compute_performance(experiment, simulation_results, detailed=False):
     
     # compute the score using labels and curves
     detailed_score = labels * simulation_results.T
-    score = np.sum(detailed_score, 0)
-    score = score.reshape(na, 2).sum(1)
+    individual_performance = np.sum(detailed_score, 0)
+    individual_performance = individual_performance.reshape(na, 2).sum(1)
 
     # compute group performance
-    group_performance = score.sum()
+    group_performance = individual_performance.sum()
 
     if detailed:
-        return score, group_performance, detailed_score
+        return individual_performance, group_performance, detailed_score
 
-    return score, group_performance
+    return individual_performance, group_performance
