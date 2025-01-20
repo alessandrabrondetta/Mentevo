@@ -3,6 +3,24 @@
     <img src="assets/banner.png" width="75%" alt="Mentevo logo" align="center" />
 </div>
 
+<div align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/Python-3.9, 3.10, 3.11-efefef">
+    </a>
+    <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/tests.yml/badge.svg">
+        <img alt="Tox" src="https://github.com/alessandrabrondetta/Mentevo/workflows/tests.yml/badge.svg">
+    </a>
+    <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
+        <img alt="Pypi" src="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
+    </a>
+    <a href="https://pepy.tech/project/Mentevo">
+        <img alt="Pepy" src="https://static.pepy.tech/badge/Mentevo">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/License-MIT-efefef">
+    </a>
+</div>
+
 👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
 
 This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.
