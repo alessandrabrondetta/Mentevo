@@ -21,6 +21,8 @@
     </a>
 </div>
 
+ ---
+
 👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
 
 This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.
