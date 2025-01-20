@@ -8,7 +8,7 @@
         <img src="https://img.shields.io/badge/Python-3.9, 3.10, 3.11-efefef">
     </a>
     <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/tests.yml/badge.svg">
-        <img alt="Tox" src="https://github.com/alessandrabrondetta/Mentevo/workflows/tests.yml/badge.svg">
+        <img alt="Tests" src="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/tests.yml/badge.svg">
     </a>
     <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
         <img alt="Pypi" src="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
