@@ -21,11 +21,11 @@
     </a>
 </div>
 
-<center>
+<p align="center">
     <a href="https://alessandrabrondetta.github.io/Mentevo/">
         📚 Explore the docs »
     </a>
-</center>
+</p>
 
  ---
 
