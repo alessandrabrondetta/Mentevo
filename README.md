@@ -21,6 +21,12 @@
     </a>
 </div>
 
+<center>
+    <a href="https://alessandrabrondetta.github.io/Mentevo/">
+        📚 Explore the docs »
+    </a>
+</center>
+
  ---
 
 👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
@@ -45,11 +51,15 @@ from mentevo import (Experiment, compute_performance, plot_curves)
 
 # create an experiment object
 experiment = Experiment(nb_agents=4)
-curves = experiment.solve()
+simulation_results = experiment.solve()
 
-plot_curves(experiment, curves)
-scores = compute_performance(experiment, curves)
-print('scores', scores)
+# plots the simulation results
+plot_curves(experiment, simulation_results)
+
+# compute the performance
+scores = compute_performance(experiment, simulation_results)
+print('individual performance', scores[0])
+print('group performance', scores[1])
 ```
 
 When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like the alpha, beta, d or tau significantly impact the output. We recommend ajusting the values according to the original paper to ensure comparable results.
