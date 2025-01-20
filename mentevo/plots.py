@@ -57,7 +57,7 @@ def plot_curves(experiment,
         The line style of the task-switching vertical lines. The default is '--'.
     show_cue_vector : bool, optional
         Whether to plot the cue vector. The default is False (the cue vector is not plotted).
-    **kwargs : optional
+    kwargs : dictionary, optional
         Additional keyword arguments to pass to the plot function (e.g., color, linestyle, etc.).
 
     """

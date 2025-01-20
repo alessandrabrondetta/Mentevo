@@ -215,7 +215,7 @@ class Experiment():
 
         Parameters
         ----------
-        **kwargs : optional
+        kwargs : dictionary, optional
             Additional keyword arguments to pass to the solve_ivp function.
 
         Returns
