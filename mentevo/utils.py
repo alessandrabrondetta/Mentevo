@@ -157,19 +157,19 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
     Build the cue vector for the experiment.
     The cue vector is a 2D vector of size (total_time, Na * No) that informs the agents about the tasks 
     they should perform at each time unit. Na is the number of agents and No is the number of tasks.
-    The cue vector has the following characteristics.
+    The cue vector has the following characteristics. \n
     - The first initial_steps time units are vectors of zero, meaning no tasks are prioritized
-    for all agents.
+    for all agents. \n
     - After, the cue vector has a step function shape with n_switches regular steps, indeed leading
     agents to switch tasks at regular intervals. Every step has the same length given by 
-    (total_time - initial_steps) // number_of_switches.
+    (total_time - initial_steps) // number_of_switches. \n
     - The first switching step is a vector of 1 for the first task and -1 for all the other tasks,
-    meaning that Task 1 is prioratized.
+    meaning that Task 1 is prioratized. \n
     - The vector is then rotated by one position for each step, meaning that now Task 2 is prioratized.
-    etc.
-    - When reversed is True, the cue vector is reversed.
+    etc. \n
+    - When reversed is True, the cue vector is reversed. \n
     - The informed agents are the first number_of_informed agents in the system and are the only ones 
-    receiving the task cue. For the other agents, the cue vector elements are zeros.  
+    receiving the task cue. For the other agents, the cue vector elements are zeros. \n
 
     Parameters
     ----------
