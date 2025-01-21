@@ -9,23 +9,25 @@
       
       
       
+        <link rel="prev" href="../experiments/">
       
-        <link rel="next" href="experiments/">
+      
+        <link rel="next" href="../performance/">
       
       
-      <link rel="icon" href="assets/logo.png">
+      <link rel="icon" href="../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>Mentevo</title>
+        <title>Plots - Mentevo</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.a40c8224.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -44,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="../css/custom.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#plots" class="md-skip">
           Skip to content
         </a>
       
@@ -88,9 +90,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Mentevo" class="md-header__button md-logo" aria-label="Mentevo" data-md-component="logo">
+    <a href=".." title="Mentevo" class="md-header__button md-logo" aria-label="Mentevo" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -107,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Plots
             
           </span>
         </div>
@@ -220,9 +222,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Mentevo" class="md-nav__button md-logo" aria-label="Mentevo" data-md-component="logo">
+    <a href=".." title="Mentevo" class="md-nav__button md-logo" aria-label="Mentevo" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     Mentevo
@@ -246,19 +248,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -267,7 +260,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -279,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="experiments/" class="md-nav__link">
+      <a href="../experiments/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -296,10 +288,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="plots/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -308,6 +309,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -319,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="performance/" class="md-nav__link">
+      <a href="../performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -339,7 +341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="utils/" class="md-nav__link">
+      <a href="../utils/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -388,68 +390,109 @@
   
 
 
-<div align="center">
-    <img src="./assets/banner.png" width="75%" alt="Mentevo logo" align="center" />
-</div>
-
-<div align="center">
-    <a href="#">
-        <img src="https://img.shields.io/badge/Python-3.9, 3.10, 3.11-efefef">
-    </a>
-    <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/tests.yml/badge.svg">
-        <img alt="Tests" src="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/tests.yml/badge.svg">
-    </a>
-    <a href="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
-        <img alt="Pypi" src="https://github.com/alessandrabrondetta/Mentevo/actions/workflows/publish.yml/badge.svg">
-    </a>
-    <a href="https://pepy.tech/project/Mentevo">
-        <img alt="Pepy" src="https://static.pepy.tech/badge/Mentevo">
-    </a>
-    <a href="#">
-        <img src="https://img.shields.io/badge/License-MIT-efefef">
-    </a>
-</div>
-
-<hr />
-<p>👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of <a href="https://escholarship.org/uc/item/6b47b61g">Brondetta et al, 2023</a>.</p>
-<p>This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.</p>
-<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
-<p>To start with Mentevo, we propose multiple notebook that will help you familiarize with the library</p>
-<ul>
-<li>Starter <a href="notebooks/starter.ipynb"><img alt="Open" src="https://img.shields.io/badge/Starter-Notebook-green?style=flat&amp;logo=jupyter" /></a></li>
-<li>Study of optimal gain value depending on the task switching rate <a href="notebooks/optimal_g_homogenous.ipynb"><img alt="Open" src="https://img.shields.io/badge/Starter-Notebook-green?style=flat&amp;logo=jupyter" /></a></li>
-<li>Performance in details <a href="notebooks/performance.ipynb"><img alt="Open" src="https://img.shields.io/badge/Starter-Notebook-green?style=flat&amp;logo=jupyter" /></a></li>
-<li>Partially informed agents <a href="notebooks/partial_informed.ipynb"><img alt="Open" src="https://img.shields.io/badge/Starter-Notebook-green?style=flat&amp;logo=jupyter" /></a></li>
-</ul>
-<p>Otherwise, you can simply start hacking with mentevo, it's as simple as:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mentevo</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Experiment</span><span class="p">,</span> <span class="n">compute_performance</span><span class="p">,</span> <span class="n">plot_curves</span><span class="p">)</span>
-
-<span class="c1"># create an experiment object</span>
-<span class="n">experiment</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">nb_agents</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">simulation_results</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-
-<span class="c1"># plots the simulation results</span>
-<span class="n">plot_curves</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">simulation_results</span><span class="p">)</span>
-
-<span class="c1"># compute the performance</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">compute_performance</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="n">simulation_results</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;individual performance&#39;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;group performance&#39;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<h1 id="plots">Plots<a class="headerlink" href="#plots" title="Permanent link">&para;</a></h1>
+<p>You can write text here.</p>
+<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">cooode</span>
 </code></pre></div>
-<p>When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like the alpha, beta, d or tau significantly impact the output. We recommend ajusting the values according to the original paper to ensure comparable results.</p>
-<h1 id="citation">Citation<a class="headerlink" href="#citation" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code>@inproceedings{brondetta2024benefits,
-  title={On the Benefits of Heterogeneity in Cognitive Stability and Flexibility for Collaborative Task Switching},
-  author={Brondetta, Alessandra and Bizyaeva, Anastasia and Lucas, Maxime and Petri, Giovanni and Musslick, Sebastian},
-  booktitle={Proceedings of the Annual Meeting of the Cognitive Science Society},
-  volume={46},
-  year={2024}
-}
-</code></pre></div>
-<h1 id="authors">Authors<a class="headerlink" href="#authors" title="Permanent link">&para;</a></h1>
+<p>Todo this documentation</p>
+<h4 class="numkdoc" id="plot_curves"><code>plot_curves(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_labels=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_legend=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_location='inside',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_fontsize=10,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_vertical_lines=True,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_linewidth=1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_color='black',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_style='--',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_cue_vector=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **kwargs)</code><a class="headerlink" href="#plot_curves" title="Permanent link">&para;</a></h4>
+<p>Plots simulation curves for a two-task experiment, specifically the time evolution of the 
+difference between the two task activities for each agent.
+<br></p>
+<p><strong>Parameters</strong></p>
 <ul>
-<li>Alessandra Brondetta - alessandra.brondetta@uni-osnabrueck.de, Candidate PhD Student under the supervision of Prof. Sebastian Musslick, Automated Scientific Discovery of Mind and Brain, Osnabrück University.</li>
+<li>
+<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment</span> </p>
+<ul>
+<li><p> The experiment object that generated the simulation_results.</p> </li>
 </ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>simulation_results</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<ul>
+<li><p> The simulation results use to create the plot.  The shape should be (number_of_agents * number_of_tasks, total_time).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>title</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The title of the plot. The default is None.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>x_label</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The x-axis label. The default is None.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>y_label</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The y-axis label. The default is None.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>legend_labels</span></strong>            : <span class='parameter-type'>list of str, optional</span> </p>
+<ul>
+<li><p> The labels for the legend. The default 'Agent i+1' whit i in range(number_of_agents).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>show_legend</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
+<ul>
+<li><p> Whether to show the legend. The default is False (the legend is not shown).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>legend_location</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The location of the legend. The default is 'inside' (the legend is inside the plot).  If 'outside', the legend is outside the plot.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>legend_fontsize</span></strong>            : <span class='parameter-type'>int, optional</span> </p>
+<ul>
+<li><p> The font size of the legend. The default is 10.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>show_vertical_lines</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
+<ul>
+<li><p> Whether to show vertical lines for task-switching times. The default is True (the vertical lines are plotted).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>task_switching_linewidth</span></strong>            : <span class='parameter-type'>int, optional</span> </p>
+<ul>
+<li><p> The width of the task-switching vertical lines. The default is 1.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>task_switching_line_color</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The color of the task-switching vertical lines. The default is 'black'. </p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>task_switching_line_style</span></strong>            : <span class='parameter-type'>str, optional</span> </p>
+<ul>
+<li><p> The line style of the task-switching vertical lines. The default is '--'.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>show_cue_vector</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
+<ul>
+<li><p> Whether to plot the cue vector. The default is False (the cue vector is not plotted).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>kwargs</span></strong>            : <span class='parameter-type'>dictionary, optional</span> </p>
+<ul>
+<li><p> Additional keyword arguments to pass to the plot function (e.g., color, linestyle, etc.).</p> </li>
+</ul>
+</li>
+</ul>
+<p><br></p>
 
 
 
@@ -496,14 +539,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.60a45f97.min.js"></script>
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
       
-        <script src="js/custom.js"></script>
+        <script src="../js/custom.js"></script>
       
     
   </body>

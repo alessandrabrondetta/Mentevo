@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../plots/">
+        <link rel="prev" href="../performance/">
       
-      
-        <link rel="next" href="../utils/">
       
       
       <link rel="icon" href="../assets/logo.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Performance - Mentevo</title>
+        <title>Utils - Mentevo</title>
       
     
     
@@ -74,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#performance" class="md-skip">
+        <a href="#utils" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Performance
+              Utils
             
           </span>
         </div>
@@ -308,6 +306,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -324,32 +342,12 @@
         
   
   <span class="md-ellipsis">
-    Performance
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../utils/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
     Utils
   </span>
   
 
       </a>
+      
     </li>
   
 
@@ -390,57 +388,203 @@
   
 
 
-<h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
+<h1 id="utils">Utils<a class="headerlink" href="#utils" title="Permanent link">&para;</a></h1>
 <p>You can write text here.</p>
 <div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">cooode</span>
 </code></pre></div>
 <p>Todo this documentation</p>
-<h4 class="numkdoc" id="compute_performance"><code>compute_performance(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; detailed=False)</code><a class="headerlink" href="#compute_performance" title="Permanent link">&para;</a></h4>
-<p>Compute the performance of the agents in the experiment using the simulation results.
-The metric used is the dot product between the sign of cue vector and the simulation results, 
-which is the score of the agent. This means counting in a positive way the areas where the agent 
-is focusing more on the correct task and in a negative way the areas where the agent is 
-doing the wrong task. The group performance is simply the sum of the scores of all agents.
+<h4 class="numkdoc" id="gaussian_g_vector"><code>gaussian_g_vector(average,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deviation,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_agents)</code><a class="headerlink" href="#gaussian_g_vector" title="Permanent link">&para;</a></h4>
+<p>Create a vector of g values following Gaussian distribution.
+The average value of the vector is forced to be the average value given as input.
 <br></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
-<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment</span> </p>
+<p><strong><span class='parameter-name'>average</span></strong>            : <span class='parameter-type'>float</span> </p>
 <ul>
-<li><p> The experiment object that generated the simulation_results.</p> </li>
+<li><p> The average value of the Gaussian distribution.</p><p> The average should be greater than 0.0.</p> </li>
 </ul>
 </li>
 <li>
-<p><strong><span class='parameter-name'>simulation_results</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<p><strong><span class='parameter-name'>deviation</span></strong>            : <span class='parameter-type'>float</span> </p>
 <ul>
-<li><p> The simulation results used to compute the performance.  The shape should be (number_of_agents * number_of_tasks, total_time).</p> </li>
+<li><p> The standard deviation of the Gaussian distribution.</p><p> The deviation should be non-negative.</p> </li>
 </ul>
 </li>
 <li>
-<p><strong><span class='parameter-name'>detailed</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
+<p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Whether to return detailed information about the performance (performance values at each time step). The default is False.</p> </li>
+<li><p> The number of agents in the system.</p> </li>
 </ul>
 </li>
 </ul>
 <p><strong>Return</strong></p>
 <ul>
 <li>
-<p><strong><span class='parameter-name'>individual_performance</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
+<p><strong><span class='parameter-name'>g</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
 <ul>
-<li><p> The performance of each agent. The shape is (number_of_agents,).</p> </li>
+<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.           </p> </li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h4 class="numkdoc" id="uniform_g_vector"><code>uniform_g_vector(average,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_agents)</code><a class="headerlink" href="#uniform_g_vector" title="Permanent link">&para;</a></h4>
+<p>Create a vector of g values following uniform distribution.
+The average value of the vector is forced to be the average value given as input.
+<br></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>average</span></strong>            : <span class='parameter-type'>float</span> </p>
+<ul>
+<li><p> The average value of the uniform distribution.</p><p> The average should be greater than 0.0.</p> </li>
 </ul>
 </li>
 <li>
-<p><strong><span class='parameter-name'>group_performance</span></strong>            : <span class='parameter-type'>float</span> </p>
+<p><strong><span class='parameter-name'>delta</span></strong>            : <span class='parameter-type'>float</span> </p>
 <ul>
-<li><p> The performance of the group.</p> </li>
+<li><p> The deviation of the uniform distribution.</p><p> The deviation should be non-negative. The deviation should be less or equal to the average.</p> </li>
 </ul>
 </li>
 <li>
-<p><strong><span class='parameter-name'>detailed_score</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> The performance of each agent, at each time step, on each task.  The shape is (total_time, number_of_agents*number_of_tasks).</p><p> This is returned only if detailed=True.     </p> </li>
+<li><p> The number of agents in the system.</p> </li>
+</ul>
+</li>
+</ul>
+<p><strong>Return</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>g</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
+<ul>
+<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.           </p> </li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h4 class="numkdoc" id="build_forward_matrix"><code>build_forward_matrix(number_of_agent,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_tasks,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alpha,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gamma,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_graph,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; communication_graph)</code><a class="headerlink" href="#build_forward_matrix" title="Permanent link">&para;</a></h4>
+<p>Build the forward matrix of the homogeneous system, where the parameter alpha, beta, 
+gamma and delta are the same for all the agents.<br />
+<br></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>number_of_agent</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of agents in the system. The number of agents should be greater than 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>number_of_tasks</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of tasks the agents have to perform. The number of tasks should be greater than 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>alpha</span></strong>            : <span class='parameter-type'>float</span> </p>
+<ul>
+<li><p> The scalar value that weights the same agent-same task interaction. The value should be  non-negative.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>beta</span></strong>            : <span class='parameter-type'>float</span> </p>
+<ul>
+<li><p> The scalar value that weights the same agent-different task interaction.</p><p> The value should be non-negative.    </p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>gamma</span></strong>            : <span class='parameter-type'>float</span> </p>
+<ul>
+<li><p> The scalar value that weights the different agent-same task interaction.</p><p> The value should be non-negative.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>delta</span></strong>            : <span class='parameter-type'>float</span> </p>
+<ul>
+<li><p> The scalar value that weights the different agent-different task interaction.    The value should be non-negative.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>task_graph</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<ul>
+<li><p> The graph between tasks. A positive value means that the tasks are positively correlated,  a negative value means that the tasks are negatively correlated.  A null value means that the tasks are not correlated.</p><p> The task graph should be of size (No, No).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>communication_graph</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<ul>
+<li><p> The graph between agents. A positive value means that the agents have a positive interaction,  a negative value means that the agents have a negative interaction.  A null value means that the agents can not communicate.</p><p> The communication graph should be of size (Na, Na).</p> </li>
+</ul>
+</li>
+</ul>
+<p><strong>Return</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>F</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<ul>
+<li><p> The forward matrix of the system representing the interactions  between agents and tasks. The forward matrix is of size (Na * No, Na * No). </p> </li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h4 class="numkdoc" id="build_cue_vector"><code>build_cue_vector(number_of_agents,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_tasks,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_informed,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_switches,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_time,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initial_steps=0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reversed=False)</code><a class="headerlink" href="#build_cue_vector" title="Permanent link">&para;</a></h4>
+<p>Build the cue vector for the experiment.
+The cue vector is a 2D vector of size (total_time, Na * No) that informs the agents about the tasks 
+they should perform at each time unit. Na is the number of agents and No is the number of tasks.
+The cue vector has the following characteristics:
+<br></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of agents in the system. The number of agents should be greater than 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>number_of_tasks</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of tasks the agents have to perform. The number of tasks should be greater than 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>number_of_informed</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of agents that are informed about the tasks (that receive the task cue).  The number of informed agents should be non-negative and less than or equal to the number  of agents.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>number_of_switches</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Number of switches in the cue vector.</p><p> The number of switches should be non-negative.</p><p> The number of switches should be less than or equal to total_time - initial_steps.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>total_time</span></strong>            : <span class='parameter-type'>int</span> </p>
+<ul>
+<li><p> Total time of the experiment. The total time should be greater than 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>initial_steps</span></strong>            : <span class='parameter-type'>int, optional</span> </p>
+<ul>
+<li><p> Number of initial time steps where no task is prioritized.  The number of initial steps should be non-negative.</p><p> The number of initial steps should be less than or equal to total_time.</p><p> Default is 0.</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>reversed</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
+<ul>
+<li><p> This options is used to reverse the cue vector. If True, the cue vector is reversed.</p><p> Default is False.  </p> </li>
+</ul>
+</li>
+</ul>
+<p><strong>Return</strong></p>
+<ul>
+<li>
+<p><strong><span class='parameter-name'>cue_vector</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<ul>
+<li><p> The cue vector of the experiment. The cue vector is of size (total_time, Na * No).</p> </li>
 </ul>
 </li>
 </ul>
