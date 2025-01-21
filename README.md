@@ -38,7 +38,7 @@ This repository also introduces various parametrization, visualization methods a
 To start with Mentevo, we propose multiple notebook that will help you familiarize with the library
 
 
-- Starter Notebook [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/starter.ipynb)
+- Starter [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/starter.ipynb)
 - Study of optimal gain value depending on the task switching rate [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/optimal_g_homogenous.ipynb)
 - Performance in details [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/performance.ipynb)
 - Partially informed agents [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](notebooks/partial_informed.ipynb)
@@ -78,4 +78,4 @@ When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like 
 
 # Authors
 
-- Alessandra Brondetta - alessandra.brondetta@uni-osnabrueck.de, Candidate PhD Student, Osnabrück University
+- Alessandra Brondetta - alessandra.brondetta@uni-osnabrueck.de, Candidate PhD Student under the supervision of Prof. Sebastian Musslick, Automated Scientific Discovery of Mind and Brain, Osnabrück University.

@@ -3,7 +3,10 @@ site_name: Mentevo
 nav:
   - Home: index.md
   - Experiment: experiments.md
+  - Plots: plots.md
   - Performance: performance.md
+  - Utils: utils.md
+  
 
 theme:
   name: "material"
