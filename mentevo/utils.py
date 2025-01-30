@@ -192,7 +192,7 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
         The number of switches should be non-negative.
         The number of switches should be less than or equal to total_time - initial_steps.
     total_time : int
-        Total time of the experiment. The total time should be greater than 0.
+        Total time of the experiment in time units. The total time should be greater than 0.
     initial_steps : int, optional
         Number of initial time steps where no task is prioritized. 
         The number of initial steps should be non-negative.

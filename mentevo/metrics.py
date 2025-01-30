@@ -4,9 +4,11 @@ def compute_performance(experiment, simulation_results, detailed=False):
     """
     Compute the performance of the agents in the experiment using the simulation results.
     The metric used is the dot product between the sign of cue vector and the simulation results, 
-    which is the score of the agent. This means counting in a positive way the areas where the agent 
-    is focusing more on the correct task and in a negative way the areas where the agent is 
-    doing the wrong task. The group performance is simply the sum of the scores of all agents.
+    indeed counting in a positive way the areas where the agent is focusing more on the correct task and in a negative way 
+    the areas where the agent is doing the wrong task. 
+    The individual performance is the sum of the scores of each agent on both tasks.
+    The group performance is simply the sum of the scores of all agents.
+    This function works only for experiments with two tasks.
 
     Parameters
     ----------
@@ -25,11 +27,14 @@ def compute_performance(experiment, simulation_results, detailed=False):
         The performance of each agent. The shape is (number_of_agents,).
     group_performance : float
         The performance of the group.
-    detailed_score : 2D numpy array
+    detailed_score.T : 2D numpy array
         The performance of each agent, at each time step, on each task. 
-        The shape is (total_time, number_of_agents*number_of_tasks).
-        This is returned only if detailed=True.     
-    
+        The shape is (number_of_agents*number_of_tasks, total_time).
+        This is returned only if detailed=True.  
+    individual_performance_t : 1D numpy array
+        The performance of each agent on the two different tasks, sum over time. 
+        The shape is (number_of_agents*number_of_tasks,).
+        This is returned only if detailed=True. 
     """
     assert isinstance(simulation_results, np.ndarray), 'simulation_results must be a numpy array'
 
@@ -45,13 +50,13 @@ def compute_performance(experiment, simulation_results, detailed=False):
     
     # compute the score using labels and curves
     detailed_score = labels * simulation_results.T
-    individual_performance = np.sum(detailed_score, 0)
-    individual_performance = individual_performance.reshape(na, 2).sum(1)
+    individual_performance_t = np.sum(detailed_score, 0) # sum over time
+    individual_performance = individual_performance_t.reshape(na, 2).sum(1) # sum over tasks
 
     # compute group performance
-    group_performance = individual_performance.sum()
+    group_performance = individual_performance.sum() # sum over agents
 
     if detailed:
-        return individual_performance, group_performance, detailed_score
+        return individual_performance, group_performance, detailed_score.T, individual_performance_t
 
     return individual_performance, group_performance
