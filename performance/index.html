@@ -392,15 +392,17 @@
 
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
 <p>You can write text here.</p>
-<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">cooode</span>
+<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">code</span>
 </code></pre></div>
 <p>Todo this documentation</p>
 <h4 class="numkdoc" id="compute_performance"><code>compute_performance(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; detailed=False)</code><a class="headerlink" href="#compute_performance" title="Permanent link">&para;</a></h4>
 <p>Compute the performance of the agents in the experiment using the simulation results.
 The metric used is the dot product between the sign of cue vector and the simulation results, 
-which is the score of the agent. This means counting in a positive way the areas where the agent 
-is focusing more on the correct task and in a negative way the areas where the agent is 
-doing the wrong task. The group performance is simply the sum of the scores of all agents.
+indeed counting in a positive way the areas where the agent is focusing more on the correct task and in a negative way 
+the areas where the agent is doing the wrong task. 
+The individual performance is the sum of the scores of each agent on both tasks.
+The group performance is simply the sum of the scores of all agents.
+This function works only for experiments with two tasks.
 <br></p>
 <p><strong>Parameters</strong></p>
 <ul>
@@ -438,9 +440,15 @@ doing the wrong task. The group performance is simply the sum of the scores of a
 </ul>
 </li>
 <li>
-<p><strong><span class='parameter-name'>detailed_score</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
+<p><strong><span class='parameter-name'>detailed_score.T</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
 <ul>
-<li><p> The performance of each agent, at each time step, on each task.  The shape is (total_time, number_of_agents*number_of_tasks).</p><p> This is returned only if detailed=True.     </p> </li>
+<li><p> The performance of each agent, at each time step, on each task.  The shape is (number_of_agents*number_of_tasks, total_time).</p><p> This is returned only if detailed=True.  </p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>individual_performance_t</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
+<ul>
+<li><p> The performance of each agent on the two different tasks, sum over time.  The shape is (number_of_agents*number_of_tasks,).</p><p> This is returned only if detailed=True. </p> </li>
 </ul>
 </li>
 </ul>
