@@ -33,7 +33,7 @@ To start with Mentevo, we propose multiple notebook that will help you familiari
 
 
 - Starter [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/starter.ipynb)
-- Simulation examples [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/simulation_example.ipynb)
+- Simulation examples [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/simulation_examples.ipynb)
 - Performance metric in details [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/performance_metric.ipynb)
 - Study of optimal gain value depending on the task switching rate [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/optimal_gain.ipynb)
 
