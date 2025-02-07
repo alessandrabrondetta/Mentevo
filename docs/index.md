@@ -23,7 +23,7 @@
 
  ---
 
-👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
+👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in task-switching environment within groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
 
 This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.
 
@@ -33,9 +33,10 @@ To start with Mentevo, we propose multiple notebook that will help you familiari
 
 
 - Starter [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/starter.ipynb)
+- Simulation examples [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/simulation_example.ipynb)
 - Performance metric in details [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/performance_metric.ipynb)
-- Study of optimal gain value depending on the task switching rate [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/optimal_g_homogenous.ipynb)
-- Partially informed agents [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/partial_informed.ipynb)
+- Study of optimal gain value depending on the task switching rate [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/optimal_gain.ipynb)
+
 
 
 Otherwise, you can simply start hacking with mentevo, it's as simple as:

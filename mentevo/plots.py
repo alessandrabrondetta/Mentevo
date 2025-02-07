@@ -21,7 +21,7 @@ def plot_curves(experiment,
     
 
     """
-    Plots simulation curves for a two-task experiment, specifically the time evolution of the 
+    Plots simulation curves for a two-task experiment, specifically the time evolution of the normalized 
     difference between the two task activities for each agent.
 
     Parameters
