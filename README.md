@@ -83,4 +83,5 @@ When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like 
 # Contact
 
 If you have any feedback, questions or suggestions, feel free to contact: 
-📧 **Email:** [albrondetta@uni-osnabrueck.de](mailto:albrondetta@uni-osnabrueck.de)
+
+📧 [albrondetta@uni-osnabrueck.de](mailto:albrondetta@uni-osnabrueck.de)
