@@ -23,13 +23,13 @@
 
  ---
 
-👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in task-switching environment within groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2023](https://escholarship.org/uc/item/6b47b61g).
+👋  Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability and flexibility in task-switching environments within groups of agents, initially providing the implementation code for the research paper of [Brondetta et al, 2024](https://escholarship.org/uc/item/6b47b61g).
 
 This repository also introduces various parametrization, visualization methods as well as metrics to compute performances of each agents. However, Mentevo emphasizes experimentation and is not an official reproduction of any other paper aside from Brondetta et al.
 
 # Getting Started
 
-To start with Mentevo, we propose multiple notebook that will help you familiarize with the library
+To start with Mentevo, we propose multiple notebook that will help you familiarize with the library:
 
 
 - Starter [![Open](https://img.shields.io/badge/Starter-Notebook-green?style=flat&logo=jupyter)](https://github.com/alessandrabrondetta/Mentevo/blob/main/notebooks/starter.ipynb)
@@ -73,4 +73,9 @@ When optimizing, it's crucial to fine-tune the hyperparameters. Parameters like 
 
 # Authors
 
-- Alessandra Brondetta - alessandra.brondetta@uni-osnabrueck.de, Candidate PhD Student under the supervision of Prof. Sebastian Musslick, [Automated Scientific Discovery of Mind and Brain](https://musslick.github.io/AER_website/), Osnabrück University.
+- Alessandra Brondetta, PhD Student under the supervision of Prof. Dr. Sebastian Musslick, [Automated Scientific Discovery of Mind and Brain](https://www.ai4cogsci.com/), Osnabrück University.
+
+# Contact
+
+If you have any feedback, questions or suggestions, feel free to contact: 
+📧 **Email:** [albrondetta@uni-osnabrueck.de](mailto:albrondetta@uni-osnabrueck.de)
