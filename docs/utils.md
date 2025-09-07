@@ -1,14 +1,12 @@
 # Utils
 
-You can write text here.
+Utility functions for constructing agent gain vectors, the forward interaction matrix, and the cue vector used in the experiment.
 
-```python
-this is some python code
-```
-
-Todo this documentation
-
+#------------------------------------
 {{mentevo.utils.gaussian_g_vector}}
+#------------------------------------
 {{mentevo.utils.uniform_g_vector}}
+#------------------------------------
 {{mentevo.utils.build_forward_matrix}}
+#------------------------------------
 {{mentevo.utils.build_cue_vector}}

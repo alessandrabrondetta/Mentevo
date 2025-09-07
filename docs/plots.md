@@ -1,11 +1,6 @@
 # Plots
 
-You can write text here.
+Utility for visualizing two‑task simulations: plots the time evolution of each agent’s normalized task focus and optional task‑switch markers and cue overlay.
 
-```python
-this is some python code
-```
-
-Todo this documentation
-
+#------------------------------------
 {{mentevo.plots.plot_curves}}
