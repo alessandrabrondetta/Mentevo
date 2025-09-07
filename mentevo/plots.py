@@ -105,7 +105,7 @@ def plot_curves(experiment,
 
     # Add cue vector if requested
     if show_cue_vector is True:
-        cue = cue_vector[:, 0] - cue_vector[:, 1]/2  
+        cue = (cue_vector[:, 0] - cue_vector[:, 1]) / 2
         cue = cue * scale_cue_vector
         plt.plot(cue, label='Cue Vector', linestyle='-', color='black')
 
