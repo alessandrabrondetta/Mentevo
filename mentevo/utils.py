@@ -230,7 +230,6 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
 
     number_of_switches = int(number_of_switches)  
     number_of_informed = int(number_of_informed)  
-    assert (total_time - initial_steps) % number_of_switches == 0, 'total_time - initial_steps should be divisible by number_of_switches'
 
     switch_len = (total_time - initial_steps) // number_of_switches  
 
