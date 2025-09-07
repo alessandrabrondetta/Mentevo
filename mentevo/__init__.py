@@ -4,7 +4,7 @@ and flexibility in task-switching environments within groups of agents.
 
 """
 
-__version__ = '0.0.2'
+__version__ = '0.1.0'
 
 from .experiment import Experiment
 from .metrics import compute_performance

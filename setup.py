@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as fh:
 
 setup(
     name="Mentevo",
-    version="0.0.2",
+    version="0.1.0",
     description="Personal toolbox to simulate Cognitive Flexibility and Stability",
     long_description=README,
     long_description_content_type="text/markdown",
