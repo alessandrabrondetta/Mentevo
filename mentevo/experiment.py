@@ -73,6 +73,7 @@ class Experiment():
         Must be greater than or equal to 0. Must be less than total_time. Default is 0.
     reverse : bool, optional
         If True, the task cue vector is reversed in the experiment. Default is False.
+        This option is only for experiments with 2 tasks.
     number_of_switches : int, optional
         The number of task-cue switches in the experiment. Must be greater than 0. 
         Must be less than or equal to total_time. Default is 4.
@@ -92,6 +93,8 @@ class Experiment():
         The forward matrix of the dynamical system, representing the interactions 
         between agents and tasks. The shape of the matrix is 
         (number_of_agents*number_of_tasks, number_of_agents*number_of_tasks).
+        The order of the rows and columns is [agent1_task1, agent1_task2, agent2_task1, agent2_task2, ...]
+        in case of two agents and two tasks.
     cue_vector : 2D numpy array
         The cue vector of the experiment, representing the external input to the system.
         The shape of the array is (total_time, number_of_agents*number_of_tasks).

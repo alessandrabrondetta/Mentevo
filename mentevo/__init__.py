@@ -1,6 +1,6 @@
 """
 Mentevo is a compact library designed for studying the dynamic of balancing cognitive stability 
-and flexibility in groups of agents. 
+and flexibility in task-switching environments within groups of agents. 
 
 """
 

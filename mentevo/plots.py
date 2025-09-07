@@ -16,21 +16,24 @@ def plot_curves(experiment,
                 task_switching_line_color='black', 
                 task_switching_line_style='--', 
                 show_cue_vector=False,
+                scale_cue_vector=1,
                 **kwargs,
                 ):
     
 
     """
-    Plots simulation curves for a two-task experiment, specifically the time evolution of the normalized 
-    difference between the two task activities for each agent.
+    Plots simulation curves for a two-task experiment, specifically the time evolution 
+    of the normalized difference between the two task activities for each agent.
 
     Parameters
     ----------
-    experiment : Experiment
+    experiment : Experiment class object
         The experiment object that generated the simulation_results.
     simulation_results : 2D numpy array
         The simulation results use to create the plot. 
         The shape should be (number_of_agents * number_of_tasks, total_time).
+        The order is [agent1_task1, agent1_task2, agent2_task1, agent2_task2, ...]
+        in case of two agents and two tasks.
     title : str, optional
         The title of the plot. The default is None.
     x_label : str, optional
@@ -47,8 +50,8 @@ def plot_curves(experiment,
     legend_fontsize : int, optional
         The font size of the legend. The default is 10.
     show_vertical_lines : bool, optional
-        Whether to show vertical lines for task-switching times. The default is True (the vertical
-        lines are plotted).
+        Whether to show vertical lines for task-switching times. The default is True 
+        (the vertical lines are plotted).
     task_switching_linewidth : int, optional    
         The width of the task-switching vertical lines. The default is 1.
     task_switching_line_color : str, optional
@@ -57,9 +60,10 @@ def plot_curves(experiment,
         The line style of the task-switching vertical lines. The default is '--'.
     show_cue_vector : bool, optional
         Whether to plot the cue vector. The default is False (the cue vector is not plotted).
+    scale_cue_vector : float, optional
+        A scaling factor for the cue vector to make it more visible in the plot. The default is 1.
     kwargs : dictionary, optional
         Additional keyword arguments to pass to the plot function (e.g., color, linestyle, etc.).
-
     """
     assert isinstance(simulation_results, np.ndarray), 'simulation_results must be a numpy array'
 
@@ -72,7 +76,7 @@ def plot_curves(experiment,
     assert simulation_results.shape == (na * no, total_time), 'simulation_results has the right shape'
     assert cue_vector.shape == (total_time, na * no), 'cue_vector has the right shape' 
 
-    # Compute curves for each agent
+    # Compute curves for each agent [(Task 1 - Task 2) / 2]
     curves = [(simulation_results[i*2] - simulation_results[i*2+1]) / 2 for i in range(na)]
 
     # Plot the curves
@@ -101,7 +105,8 @@ def plot_curves(experiment,
 
     # Add cue vector if requested
     if show_cue_vector is True:
-        cue = cue_vector[:, 0] - cue_vector[:, 1]
+        cue = cue_vector[:, 0] - cue_vector[:, 1]/2  
+        cue = cue * scale_cue_vector
         plt.plot(cue, label='Cue Vector', linestyle='-', color='black')
 
     # Add legend if labels are provided

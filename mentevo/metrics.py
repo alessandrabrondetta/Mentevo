@@ -8,15 +8,16 @@ def compute_performance(experiment, simulation_results, detailed=False):
     the areas where the agent is doing the wrong task. 
     The individual performance is the sum of the scores of each agent on both tasks.
     The group performance is simply the sum of the scores of all agents.
-    This function works only for experiments with two tasks.
 
     Parameters
-    ----------
-    experiment : Experiment
+    ---------- 
+    experiment : Experiment class object
         The experiment object that generated the simulation_results.
     simulation_results : 2D numpy array
         The simulation results used to compute the performance. 
-        The shape should be (number_of_agents * number_of_tasks, total_time).
+        The shape should be (number_of_agents * number_of_tasks, total_time). 
+        The order is [agent1_task1, agent1_task2, agent2_task1, agent2_task2, ...]
+        in case of two agents and two tasks.
     detailed : bool, optional
         Whether to return detailed information about the performance (performance values at
         each time step). The default is False.
@@ -48,7 +49,7 @@ def compute_performance(experiment, simulation_results, detailed=False):
     labels = np.sign(experiment.cue_vector)
     assert labels.shape == (experiment.total_time, na * no), 'cue_vector has the right shape'
     
-    # compute the score using labels and curves
+    # compute the score using labels and simulation results
     detailed_score = labels * simulation_results.T
     individual_performance_t = np.sum(detailed_score, 0) # sum over time
     individual_performance = individual_performance_t.reshape(na, 2).sum(1) # sum over tasks
