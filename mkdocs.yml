@@ -4,7 +4,7 @@ nav:
   - Home: index.md
   - Experiment: experiments.md
   - Plots: plots.md
-  - Performance: performance.md
+  - Metrics: metrics.md
   - Utils: utils.md
   
 
