@@ -38,10 +38,12 @@ def test_experiment_default():
 
     assert e.F.shape == (8,8)
     assert e.cue_vector.shape == (2000,8)
-    assert e.task_switching_times.shape == (3,)
-    assert e.task_switching_times[0] == 499
-    assert e.task_switching_times[1] == 999
-    assert e.task_switching_times[2] == 1499
+    assert e.task_switching_times.shape == (4,)
+    assert e.task_switching_times.shape == (e.number_of_switches,)
+    assert e.task_switching_times[0] == 0
+    assert e.task_switching_times[1] == 500
+    assert e.task_switching_times[2] == 1000
+    assert e.task_switching_times[3] == 1500
 
     zs = e.solve()
 
@@ -85,11 +87,12 @@ def test_experiment_costum():
     assert epsilon_equal (e.cue_vector[1700], np.array([1, -1, -1, 1, -1, -1, 1, -1, -1, 0, 0, 0, 0, 0, 0]))
     assert epsilon_equal (e.cue_vector[2200], np.array([-1, 1, -1, -1, 1, -1, -1, 1, -1, 0, 0, 0, 0, 0, 0]))
     assert e.task_switching_times.shape == (5,)
-    assert e.task_switching_times[0] == 199
-    assert e.task_switching_times[1] == 699
-    assert e.task_switching_times[2] == 1199
-    assert e.task_switching_times[3] == 1699
-    assert e.task_switching_times[4] == 2199
+    assert e.task_switching_times.shape == (e.number_of_switches,)
+    assert e.task_switching_times[0] == 200
+    assert e.task_switching_times[1] == 700
+    assert e.task_switching_times[2] == 1200
+    assert e.task_switching_times[3] == 1700
+    assert e.task_switching_times[4] == 2200
 
     zs = e.solve()
 
@@ -132,17 +135,17 @@ def test_experiment_costum_reversed():
     assert epsilon_equal (e.cue_vector[1700], np.array([-1, 1, 1, -1, 1, 1, -1, 1, 1, 0, 0, 0, 0, 0, 0]))
     assert epsilon_equal (e.cue_vector[2200], np.array([1, -1, 1, 1, -1, 1, 1, -1, 1, 0, 0, 0, 0, 0, 0]))
     assert e.task_switching_times.shape == (5,)
-    assert e.task_switching_times[0] == 199
-    assert e.task_switching_times[1] == 699
-    assert e.task_switching_times[2] == 1199
-    assert e.task_switching_times[3] == 1699
-    assert e.task_switching_times[4] == 2199
+    assert e.task_switching_times.shape == (e.number_of_switches,)
+    assert e.task_switching_times[0] == 200
+    assert e.task_switching_times[1] == 700
+    assert e.task_switching_times[2] == 1200
+    assert e.task_switching_times[3] == 1700
+    assert e.task_switching_times[4] == 2200
 
     zs = e.solve()
 
     assert zs.shape == (15, 2700)
 
-# fare test generale ?
 
 
     
