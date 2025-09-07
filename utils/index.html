@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../performance/">
+        <link rel="prev" href="../plots/">
       
       
       
@@ -309,7 +309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../performance.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -389,10 +389,8 @@
 
 
 <h1 id="utils">Utils<a class="headerlink" href="#utils" title="Permanent link">&para;</a></h1>
-<p>You can write text here.</p>
-<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">code</span>
-</code></pre></div>
-<p>Todo this documentation</p>
+<p>Utility functions for constructing agent gain vectors, the forward interaction matrix, and the cue vector used in the experiment.</p>
+<h1 id="-">------------------------------------<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
 <h4 class="numkdoc" id="gaussian_g_vector"><code>gaussian_g_vector(average,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; deviation,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_agents)</code><a class="headerlink" href="#gaussian_g_vector" title="Permanent link">&para;</a></h4>
 <p>Create a vector of g values following Gaussian distribution.
 The average value of the vector is forced to be the average value given as input.
@@ -414,7 +412,7 @@ The average value of the vector is forced to be the average value given as input
 <li>
 <p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> The number of agents in the system.</p> </li>
+<li><p> The number of agents in the system.  The number of agents should be greater than 0.</p> </li>
 </ul>
 </li>
 </ul>
@@ -423,11 +421,12 @@ The average value of the vector is forced to be the average value given as input
 <li>
 <p><strong><span class='parameter-name'>g</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
 <ul>
-<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.           </p> </li>
+<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.</p><p> All g values are non-negative. The average value of the g vector is equal to the average value given as input.          </p> </li>
 </ul>
 </li>
 </ul>
 <p><br></p>
+<h1 id="-_1">------------------------------------<a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h1>
 <h4 class="numkdoc" id="uniform_g_vector"><code>uniform_g_vector(average,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_agents)</code><a class="headerlink" href="#uniform_g_vector" title="Permanent link">&para;</a></h4>
 <p>Create a vector of g values following uniform distribution.
 The average value of the vector is forced to be the average value given as input.
@@ -449,7 +448,7 @@ The average value of the vector is forced to be the average value given as input
 <li>
 <p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> The number of agents in the system.</p> </li>
+<li><p> The number of agents in the system.</p><p> The number of agents should be greater than 0.</p> </li>
 </ul>
 </li>
 </ul>
@@ -458,33 +457,52 @@ The average value of the vector is forced to be the average value given as input
 <li>
 <p><strong><span class='parameter-name'>g</span></strong>            : <span class='parameter-type'>1D numpy array</span> </p>
 <ul>
-<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.           </p> </li>
+<li><p> A numpy array of size (number_of_agents,) with the g values for all agents in the system.  All g values are non-negative. The average value of the g vector is equal to the average value given as input.       </p> </li>
 </ul>
 </li>
 </ul>
 <p><br></p>
+<h1 id="-_2">------------------------------------<a class="headerlink" href="#-_2" title="Permanent link">&para;</a></h1>
 <h4 class="numkdoc" id="build_forward_matrix"><code>build_forward_matrix(number_of_agent,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_tasks,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alpha,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gamma,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_graph,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; communication_graph)</code><a class="headerlink" href="#build_forward_matrix" title="Permanent link">&para;</a></h4>
-<p>Build the forward matrix of the homogeneous system, where the parameter alpha, beta, 
-gamma and delta are the same for all the agents.<br />
-<br></p>
+<p>Build the forward matrix of the system, where the parameter alpha, beta, 
+gamma and delta are the same for all the agents.</p>
+<hr />
+<p>The forward matrix is a matrix of size (Na * No, Na * No), where Na is the number of agents
+and No is the number of tasks. The forward matrix represents the interaction between all agents 
+and tasks. The next state of the agents is given by the matrix-vector product
+of the forward matrix and the current state of the agents, besides other terms.</p>
+<hr />
+<p>The basic formulas to get the forward matrix is:
+alpha * I + beta * (1 - I)   for the in-diagonal block
+gamma * I + delta * (1 - I)  for the out-diagonal block</p>
+<hr />
+<p>A more advanced formulas that use the graphs is the following:
+alpha * (G_o * I_o) + beta * (G_o - G_o * I_o)   for the in-diagonal block
+gamma * (G_o * I_o) + delta * (G_o - G_o * I_o)  for the out-diagonal block
+where G_o is the task graph, and I_o is the identity matrix of size No.</p>
+<hr />
+<p>Furthermore, each block is multiplied by their corresponding scalar value in
+the communication graph G_a.</p>
+<hr />
+<p><br></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
 <p><strong><span class='parameter-name'>number_of_agent</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Number of agents in the system. The number of agents should be greater than 0.</p> </li>
+<li><p> Number of agents in the system.  The number of agents should be greater than 0.</p> </li>
 </ul>
 </li>
 <li>
 <p><strong><span class='parameter-name'>number_of_tasks</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Number of tasks the agents have to perform. The number of tasks should be greater than 0.</p> </li>
+<li><p> Number of tasks the agents have to perform.  The number of tasks should be greater than 0.</p> </li>
 </ul>
 </li>
 <li>
 <p><strong><span class='parameter-name'>alpha</span></strong>            : <span class='parameter-type'>float</span> </p>
 <ul>
-<li><p> The scalar value that weights the same agent-same task interaction. The value should be  non-negative.</p> </li>
+<li><p> The scalar value that weights the same agent-same task interaction.  The value should be non-negative.</p> </li>
 </ul>
 </li>
 <li>
@@ -528,24 +546,39 @@ gamma and delta are the same for all the agents.<br />
 </li>
 </ul>
 <p><br></p>
+<h1 id="-_3">------------------------------------<a class="headerlink" href="#-_3" title="Permanent link">&para;</a></h1>
 <h4 class="numkdoc" id="build_cue_vector"><code>build_cue_vector(number_of_agents,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_tasks,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_informed,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_switches,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_time,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initial_steps=0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reversed=False)</code><a class="headerlink" href="#build_cue_vector" title="Permanent link">&para;</a></h4>
-<p>Build the cue vector for the experiment.
-The cue vector is a 2D vector of size (total_time, Na * No) that informs the agents about the tasks 
-they should perform at each time unit. Na is the number of agents and No is the number of tasks.
-The cue vector has the following characteristics:
-<br></p>
+<p>Build the cue vector for the experiment. The cue vector is a 2D vector of size (total_time, Na * No) 
+that informs the agents about the tasks they should perform at each time unit. 
+Na is the number of agents and No is the number of tasks.</p>
+<hr />
+<p>The cue vector has the following characteristics: <br>
+- The first initial_steps time units are vectors of zero, meaning no tasks are prioritized
+for all agents. <br>
+- After, the cue vector has a step function shape with n_switches regular steps, indeed leading
+agents to switch tasks at regular intervals. Every step has the same length given by 
+(total_time - initial_steps) // number_of_switches. <br>
+- The first switching step is a vector of 1 for the first task and -1 for all the other tasks,
+meaning that Task 1 is prioratized. <br>
+- The vector is then rotated by one position for each step, meaning that now Task 2 is prioratized.
+etc. <br>
+- When reversed is True, the cue vector is reversed. <br>
+- The informed agents are the first number_of_informed agents in the system and are the only ones 
+receiving the task cue. For the other agents, the cue vector elements are zeros.</p>
+<hr />
+<p><br></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
 <p><strong><span class='parameter-name'>number_of_agents</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Number of agents in the system. The number of agents should be greater than 0.</p> </li>
+<li><p> Number of agents in the system.  The number of agents should be greater than 0.</p> </li>
 </ul>
 </li>
 <li>
 <p><strong><span class='parameter-name'>number_of_tasks</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Number of tasks the agents have to perform. The number of tasks should be greater than 0.</p> </li>
+<li><p> Number of tasks the agents have to perform.  The number of tasks should be greater than 0.</p> </li>
 </ul>
 </li>
 <li>
@@ -557,13 +590,13 @@ The cue vector has the following characteristics:
 <li>
 <p><strong><span class='parameter-name'>number_of_switches</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Number of switches in the cue vector.</p><p> The number of switches should be non-negative.</p><p> The number of switches should be less than or equal to total_time - initial_steps.</p> </li>
+<li><p> Number of switches in the cue vector.</p><p> The number of switches should be positive.</p><p> The number of switches should be less than or equal to total_time - initial_steps.</p> </li>
 </ul>
 </li>
 <li>
 <p><strong><span class='parameter-name'>total_time</span></strong>            : <span class='parameter-type'>int</span> </p>
 <ul>
-<li><p> Total time of the experiment in time units. The total time should be greater than 0.</p> </li>
+<li><p> Total time of the experiment in time units.  The total time should be greater than 0.</p> </li>
 </ul>
 </li>
 <li>
@@ -575,7 +608,7 @@ The cue vector has the following characteristics:
 <li>
 <p><strong><span class='parameter-name'>reversed</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
 <ul>
-<li><p> This options is used to reverse the cue vector. If True, the cue vector is reversed.</p><p> Default is False.  </p> </li>
+<li><p> This options is used to reverse the cue vector. If True, the cue vector is reversed.</p><p> Default is False.   This option should be used only when the number of tasks is 2.</p> </li>
 </ul>
 </li>
 </ul>
@@ -584,7 +617,7 @@ The cue vector has the following characteristics:
 <li>
 <p><strong><span class='parameter-name'>cue_vector</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
 <ul>
-<li><p> The cue vector of the experiment. The cue vector is of size (total_time, Na * No).</p> </li>
+<li><p> The cue vector of the experiment. The cue vector is of size (total_time, Na * No).</p><p> The cue vector informs the agents about the tasks they should perform at each time unit.</p><p> The cue vector is the same for all agents, except for the uninformed agents that have a cue vector of zeros.</p> </li>
 </ul>
 </li>
 </ul>

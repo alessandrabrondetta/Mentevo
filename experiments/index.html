@@ -280,17 +280,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Experiment
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -300,34 +289,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#Experiment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Experiment
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -360,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../performance.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -413,23 +374,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#Experiment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Experiment
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -447,17 +391,15 @@
 
 
 <h1 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">&para;</a></h1>
-<p>You can write text here.</p>
-<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">code</span>
-</code></pre></div>
-<p>Todo this documentation</p>
+<p>This document describes the <em>Experiment</em> class, which simulates the evolution of task activities for multiple agents performing multiple tasks. The model is a nonlinear dynamical system with structured interactions and an external task cue.</p>
+<h1 id="-">------------------------------------<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
 <h2 class="numkdoc" id="Experiment"><code>Experiment</code><a class="headerlink" href="#Experiment" title="Permanent link">&para;</a></h2>
 <p>Class to represent an experiment. This Experiment class models and simulates a system with 
 interacting agents and tasks, solving a nonlinear dynamical system defined by agent behaviors, 
 communication structure and task correlations, system parameters and external inputs.
-The Experiment class simulates the evolution of the task activities of the agents over time,<br />
-and is also defined by the initial state of the system and the parameters of the 
-simulation, such as total time of the simulation and number of task switches. 
+The Experiment class simulates the evolution of the task activities (agents' focus) of the 
+agents over time, and is also defined by the initial state of the system and the parameters 
+of the simulation, such as total time of the simulation and number of task switches. 
 The class contains a solver for simulating system evolution over time.
 <br></p>
 <h4 class="numkdoc" id="__init__"><code>__init__(<span class='parameter-self'>self</span>,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_agents=4,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_tasks=2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; communication_graph=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_graph=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alpha=0.03,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta=0.01,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gamma=0.02,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta=0.0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d=0.2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tau=10.0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bias_value=0.1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initial_state=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_time=2000,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; initial_steps=0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reverse=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_switches=4,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number_of_informed=None)</code><a class="headerlink" href="#__init__" title="Permanent link">&para;</a></h4>
@@ -556,13 +498,13 @@ The class contains a solver for simulating system evolution over time.
 <li>
 <p><strong><span class='parameter-name'>reverse</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
 <ul>
-<li><p> If True, the task cue vector is reversed in the experiment. Default is False.</p> </li>
+<li><p> If True, the task cue vector is reversed in the experiment. Default is False.</p><p> This option is only for experiments with 2 tasks.</p> </li>
 </ul>
 </li>
 <li>
 <p><strong><span class='parameter-name'>number_of_switches</span></strong>            : <span class='parameter-type'>int, optional</span> </p>
 <ul>
-<li><p> The number of task switches in the experiment. Must be greater than or equal to 0.  Must be less than or equal to total_time. Must be greater than or equal to 0. Default is 4.</p> </li>
+<li><p> The number of task-cue switches in the experiment. Must be greater than 0.  Must be less than or equal to total_time. Default is 4.</p><p> The first switch correspond to the start of the experiment and  occurs at time unit 0 if initial_steps is 0, otherwise at time unit initial_steps.</p><p> Attention: the number of switches corresponds to the number of switches in the task cue vector and correspond to the number of blocks of tasks in the experiment, and is different from the number of task-to-task switches (which is number_of_switches - 1).</p> </li>
 </ul>
 </li>
 <li>

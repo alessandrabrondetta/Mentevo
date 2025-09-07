@@ -12,7 +12,7 @@
         <link rel="prev" href="../experiments/">
       
       
-        <link rel="next" href="../performance/">
+        <link rel="next" href="../utils/">
       
       
       <link rel="icon" href="../assets/logo.png">
@@ -321,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../performance.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -391,18 +391,16 @@
 
 
 <h1 id="plots">Plots<a class="headerlink" href="#plots" title="Permanent link">&para;</a></h1>
-<p>You can write text here.</p>
-<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">code</span>
-</code></pre></div>
-<p>Todo this documentation</p>
-<h4 class="numkdoc" id="plot_curves"><code>plot_curves(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_labels=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_legend=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_location='inside',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_fontsize=10,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_vertical_lines=True,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_linewidth=1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_color='black',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_style='--',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_cue_vector=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **kwargs)</code><a class="headerlink" href="#plot_curves" title="Permanent link">&para;</a></h4>
-<p>Plots simulation curves for a two-task experiment, specifically the time evolution of the normalized 
-difference between the two task activities for each agent.
+<p>Utility for visualizing two‑task simulations: plots the time evolution of each agent’s normalized task focus and optional task‑switch markers and cue overlay.</p>
+<h1 id="-">------------------------------------<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
+<h4 class="numkdoc" id="plot_curves"><code>plot_curves(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; title=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y_label=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_labels=None,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_legend=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_location='inside',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legend_fontsize=10,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_vertical_lines=True,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_linewidth=1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_color='black',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; task_switching_line_style='--',<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show_cue_vector=False,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scale_cue_vector=1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **kwargs)</code><a class="headerlink" href="#plot_curves" title="Permanent link">&para;</a></h4>
+<p>Plots simulation curves for a two-task experiment, specifically the time evolution 
+of the normalized difference between the two task activities for each agent.
 <br></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
-<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment</span> </p>
+<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment class object</span> </p>
 <ul>
 <li><p> The experiment object that generated the simulation_results.</p> </li>
 </ul>
@@ -410,7 +408,7 @@ difference between the two task activities for each agent.
 <li>
 <p><strong><span class='parameter-name'>simulation_results</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
 <ul>
-<li><p> The simulation results use to create the plot.  The shape should be (number_of_agents * number_of_tasks, total_time).</p> </li>
+<li><p> The simulation results use to create the plot.  The shape should be (number_of_agents * number_of_tasks, total_time).</p><p> The order is [agent1_task1, agent1_task2, agent2_task1, agent2_task2, ...] in case of two agents and two tasks.</p> </li>
 </ul>
 </li>
 <li>
@@ -458,7 +456,7 @@ difference between the two task activities for each agent.
 <li>
 <p><strong><span class='parameter-name'>show_vertical_lines</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
 <ul>
-<li><p> Whether to show vertical lines for task-switching times. The default is True (the vertical lines are plotted).</p> </li>
+<li><p> Whether to show vertical lines for task-switching times. The default is True  (the vertical lines are plotted).</p> </li>
 </ul>
 </li>
 <li>
@@ -483,6 +481,12 @@ difference between the two task activities for each agent.
 <p><strong><span class='parameter-name'>show_cue_vector</span></strong>            : <span class='parameter-type'>bool, optional</span> </p>
 <ul>
 <li><p> Whether to plot the cue vector. The default is False (the cue vector is not plotted).</p> </li>
+</ul>
+</li>
+<li>
+<p><strong><span class='parameter-name'>scale_cue_vector</span></strong>            : <span class='parameter-type'>float, optional</span> </p>
+<ul>
+<li><p> A scaling factor for the cue vector to make it more visible in the plot. The default is 1.</p> </li>
 </ul>
 </li>
 <li>

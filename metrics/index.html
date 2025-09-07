@@ -9,10 +9,6 @@
       
       
       
-        <link rel="prev" href="../plots/">
-      
-      
-        <link rel="next" href="../utils/">
       
       
       <link rel="icon" href="../assets/logo.png">
@@ -308,19 +304,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../performance.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -329,7 +316,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -391,10 +377,8 @@
 
 
 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
-<p>You can write text here.</p>
-<div class="highlight"><pre><span></span><code><span class="n">this</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">python</span> <span class="n">code</span>
-</code></pre></div>
-<p>Todo this documentation</p>
+<p>This module provides a function to score how well agents follow the externally provided cue over time.</p>
+<h1 id="-">------------------------------------<a class="headerlink" href="#-" title="Permanent link">&para;</a></h1>
 <h4 class="numkdoc" id="compute_performance"><code>compute_performance(experiment,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; simulation_results,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; detailed=False)</code><a class="headerlink" href="#compute_performance" title="Permanent link">&para;</a></h4>
 <p>Compute the performance of the agents in the experiment using the simulation results.
 The metric used is the dot product between the sign of cue vector and the simulation results, 
@@ -402,12 +386,11 @@ indeed counting in a positive way the areas where the agent is focusing more on 
 the areas where the agent is doing the wrong task. 
 The individual performance is the sum of the scores of each agent on both tasks.
 The group performance is simply the sum of the scores of all agents.
-This function works only for experiments with two tasks.
 <br></p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
-<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment</span> </p>
+<p><strong><span class='parameter-name'>experiment</span></strong>            : <span class='parameter-type'>Experiment class object</span> </p>
 <ul>
 <li><p> The experiment object that generated the simulation_results.</p> </li>
 </ul>
@@ -415,7 +398,7 @@ This function works only for experiments with two tasks.
 <li>
 <p><strong><span class='parameter-name'>simulation_results</span></strong>            : <span class='parameter-type'>2D numpy array</span> </p>
 <ul>
-<li><p> The simulation results used to compute the performance.  The shape should be (number_of_agents * number_of_tasks, total_time).</p> </li>
+<li><p> The simulation results used to compute the performance.  The shape should be (number_of_agents * number_of_tasks, total_time).  The order is [agent1_task1, agent1_task2, agent2_task1, agent2_task2, ...] in case of two agents and two tasks.</p> </li>
 </ul>
 </li>
 <li>
