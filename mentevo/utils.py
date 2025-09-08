@@ -229,10 +229,9 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
     assert initial_steps <= total_time, 'initial_steps should be less than or equal to total_time'
 
     number_of_switches = int(number_of_switches)  
-    number_of_informed = int(number_of_informed)  
+    number_of_informed = int(number_of_informed)    
 
-    switch_len = (total_time - initial_steps) // number_of_switches  
-
+    # initialize the cue vector with zeros
     cue_vector = np.zeros((total_time, number_of_agents * number_of_tasks))
 
     # first value is 1 for the first task and -1 for all the other tasks
@@ -246,13 +245,18 @@ def build_cue_vector(number_of_agents, number_of_tasks, number_of_informed,
     # fill the first time steps with zeros (no tasks prioritized)
     cue_vector[:initial_steps, :] = 0
 
-    # now start the task switching after the initial steps
-    for i in range(number_of_switches):
-        cue_vector[initial_steps + i*switch_len:initial_steps + (i+1)*switch_len, :] = val
-        val = val.reshape((number_of_agents, number_of_tasks))
-        val = np.roll(val, 1, axis=1)
-        val = val.flatten()
+    # fill the cue vector with the step function
+    base, rem = divmod(total_time - initial_steps, number_of_switches)
 
+    start = initial_steps
+    for i in range(number_of_switches):
+        block = base + (1 if i < rem else 0)  # int
+        end = start + block
+        cue_vector[start:end, :] = val
+        start = end
+        val = np.roll(val.reshape(number_of_agents, number_of_tasks), 1, axis=1).ravel()
+
+    # reverse the cue vector if needed (only for 2 tasks)
     if reversed:
         cue_vector = -1.0 * cue_vector
 
